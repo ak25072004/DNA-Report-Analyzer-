@@ -1,0 +1,3 @@
+Cancer AGCTAGC
+Diabetes TTAGGC
+Flu CGTATG

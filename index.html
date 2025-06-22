@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DNA Report Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .chart-container {
+            width: 300px;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧬 DNA Report Analyzer</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div>
+                <label>Upload DNA Sample 1:</label>
+                <input type="file" name="dna1" required>
+            </div>
+            <div>
+                <label>Upload DNA Sample 2:</label>
+                <input type="file" name="dna2" required>
+            </div>
+            <button type="submit">🔍 Analyze DNA</button>
+        </form>
+
+        {% if results %}
+            <h2>🧪 Analysis Results:</h2>
+
+            <h3>Sample 1 - Potential Disease Risks:</h3>
+            {% if results.sample1 %}
+                <ul>
+                    {% for disease in results.sample1 %}
+                        <li>{{ disease }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No diseases detected in Sample 1.</p>
+            {% endif %}
+
+            <h3>Sample 2 - Potential Disease Risks:</h3>
+            {% if results.sample2 %}
+                <ul>
+                    {% for disease in results.sample2 %}
+                        <li>{{ disease }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No diseases detected in Sample 2.</p>
+            {% endif %}
+
+            <h3>DNA Similarity:</h3>
+            <p>{{ results.similarity }}</p>
+
+        {% else %}
+            <p>No analysis performed yet. Upload samples to begin.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
